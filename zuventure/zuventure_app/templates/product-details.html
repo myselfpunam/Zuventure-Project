@@ -1,0 +1,42 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %} 
+<div class="breadcumb-wrapper " data-bg-src="{% static 'assets/img/bg/background_of_product_details.jpg' %}">
+  <div class="container">
+      <div class="breadcumb-content">
+          <h1 class="breadcumb-title">Service Details</h1>
+          <ul class="breadcumb-menu">
+              <li><a href="{% url 'index' %}">Home</a></li>
+              <li>Service Details</li>
+          </ul>
+      </div>
+  </div>
+</div>
+<!--==============================
+Service Area
+==============================-->
+<section class="space-top space-extra-bottom">
+  <div class="container">
+      <div class="row">
+          <div class="col-xxl-12 col-lg-12">
+              <div class="page-single mb-30">
+                  <div class="page-content">
+                      <h3 class="mb-4">We Provide Best Product</h3>
+                      <div class="row mt-20 gx-40">
+                          <div class="col-md-6 mb-30">
+                              <img class="w-100" src="{{product_details.image.url}}" alt="service">
+                          </div>
+                          <div class="col-md-6 mb-30 ">
+                              <h3 class="mb-20">{{product_details.name}}</h3>
+                              <p class="mb-5">{{product_details.descriptions|safe}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,324 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %} 
+
+<!-- Slider Section Start -->
+<div class="th-hero-wrapper hero-3" id="hero">
+  <div class="banner-area">
+      <div class="ball-shape">
+          <div class="img2">
+              <img src="{% static 'assets/img/hero/ball_2.svg' %}" alt="shape">
+          </div>
+          <div class="img3">
+              <img src="{% static 'assets/img/hero/ball_3.svg' %}" alt="shape">
+          </div>
+      </div>
+      
+      <div class="swiper th-slider" data-bg-src="assets/img/hero/sloid" id="heroSlide3"
+          data-slider-options='{"effect":"fade","autoHeight":true}'>
+          <div class="swiper-wrapper">
+            {% for slider in sliders %}
+              <div class="swiper-slide">
+                  <div class="hero-inner">
+                      <div class="hero-overlay" data-ani="slideinright" data-ani-delay="0.7s"></div>
+                      <div class="container th-container">
+                          <div class="hero-style3">
+                              <h1 data-ani="slideinup" data-ani-delay="0.4s">{{slider.title}}
+                              </h1>
+                              <h2 class="hero-title3" data-ani="slideinup" data-ani-delay="0.5s">{{slider.sub_title}}
+                              </h2>
+                              <a href="reservation.html" class="th-btn" data-ani="slideinup"
+                                  data-ani-delay="0.7s">Contact Now</a>
+                          </div>
+                      </div>
+                      <div class="hero-img">
+                          <div class="img1 img01" data-ani="slideinright" data-ani-delay="0.1s">
+                              <img style="height: 760px; width: 769px;" src="{{slider.image.url}}" alt="Image">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            {% endfor %}
+          </div>
+      </div>
+      <div class="hero-bottom">
+          <div class="icon-box">
+              <button data-slider-prev="#heroSlide3" class="slider-arrow slider-prev default"><span
+                      class="icon"></span></button>
+              <button data-slider-next="#heroSlide3" class="slider-arrow slider-next default"><span
+                      class="icon"></span></button>
+          </div>
+      </div>
+  </div>
+
+  <div class="hero-social">
+      <div class="social-links">
+          <a href="{{info.facebook_url}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="{{info.instagram_url}}" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="{{info.youtube_url}}" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+  </div>
+</div>
+<!-- Slider Section End -->
+<!-- demanding Section Start -->
+<div class="overflow-hidden space">
+  <div class="container">
+      <div class="row align-items-center flex-row-reverse">
+          <div class="col-xl-5 mb-25 mb-xl-0 col-sm-12">
+            <img class="flipY" src="{% static 'assets/img/bg/demanding.gif' %}" alt="Why">
+              <!-- <div class="img-box7">
+                  
+                  <div class="img1 shape1 flipY">
+                     
+                  </div>
+              </div> -->
+          </div>
+          <div class="col-xl-7 col-md-12 text-center text-xl-start">
+              <div class="title-area mb-35">
+                  <span class="sub-title3">Our Most Popular Product</span>
+                  <h2 class="sec-title title-ani">Most Demanding Product </h2>
+                  <div class="text-ani">
+                      <p class="sec-text">Reduces thrombosis, Improvements in cognition, Working memory Short-term visual memory in dementia Short-term memory in cerebral insufficiency In people with dementiasocial functioning, concentration, attention, tinnitus Activities of daily living scores in people Mood and sleep in older individuals.</p>
+                  </div>
+              </div>
+              <div class="check-feature-wrap">
+                  <div class="check-feature text-ani">
+                      <i class="fa-solid fa-badge-check"></i>
+                      Reduces thrombosis
+                  </div>
+                  <div class="check-feature text-ani">
+                      <i class="fa-solid fa-badge-check"></i>
+                      Improvements in Congnition
+                  </div>
+                  <div class="check-feature text-ani">
+                      <i class="fa-solid fa-badge-check"></i>
+                      Working Memory
+                  </div>
+                  <div class="check-feature text-ani">
+                      <i class="fa-solid fa-badge-check"></i>
+                      In Perople With Dementia Social
+                  </div>
+              </div>
+              <div class="text-ani">
+                  <a href="contact.html" class="th-btn style-border">Contact Us</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- demanding Section End -->
+
+<!-- Gallery Section Start -->
+<section class="space" id="category-sec">
+  <div class="container">
+      <div class="title-area text-center">
+          <span class="sub-title3"> Our Gallery</span>
+          <h2 class="sec-title">Our product Gallery</h2>
+      </div>
+      <div class="slider-area">
+          <div class="swiper th-slider" id="catSlider2"
+              data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"400":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"5"},"1300":{"slidesPerView":"6"}}}'>
+              <div class="swiper-wrapper">
+                {% for gallery in gallery_photos %}
+                  <div class="swiper-slide">
+                      <div class="category-box">
+                          <div class="box-img">
+                              <img src="{{gallery.image.url}}" alt="Image">
+                          </div>
+                          {% if gallery.short_description %}
+                          <h3 class="box-title"><a href="shop.html">{{gallery.short_description}}</a></h3>
+                          {% endif %}
+                      </div>
+                  </div>
+                {% endfor %}
+              </div>
+          </div>
+          <button data-slider-prev="#catSlider2" class="slider-arrow slider-prev"><span
+                  class="icon"></span></button>
+          <button data-slider-next="#catSlider2" class="slider-arrow slider-next"><span
+                  class="icon"></span></button>
+      </div>
+  </div>
+</section>
+<!-- Gallery Section End -->
+
+<!-- Popular Product Section Start -->
+<section class="space" id="shop-sec">
+  <div class="shape-mockup spin d-none d-lg-block" data-top="8%" data-left="3%">
+    <img class="gspin" src="{% static 'assets/img/shape/flower_9.png' %}" alt="shape">
+  </div>
+  <div class="shape-mockup jump-reverse" data-bottom="8%" data-right="0">
+    <img src="{% static 'assets/img/shape/flower_6.png' %}" alt="shape" data-speed="1.2">
+  </div>
+  <div class="container text-center">
+    <div class="title-area text-center">
+      <span class="sub-title3">Our Product</span>
+      <h2 class="sec-title">Our Popular Product</h2>
+    </div>
+
+    <!-- Category Filter Buttons -->
+    <div class="text-ani">
+      <div class="tab-menu1 filter-menu-active">
+        <button data-filter="*" class="th-btn style-border btn-sm active" type="button">All</button>
+        {% for category in categories %}
+        <button data-filter=".cat{{ category.id }}" class="th-btn style-border btn-sm" type="button">{{ category.name }}</button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="row gy-40 filter-active">
+      {% for product in populer_products %}
+      <div class="col-xl-3 col-lg-4 col-sm-6 filter-item cat{{ product.category.id }}">
+        <div class="th-product product-grid">
+          <div class="product-img transparent-img">
+            <img src="{{ product.image.url }}" alt="Product Image">
+            <div class="actions">
+              <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+            </div>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">
+              <a href="shop-details.html">{{ product.name }}</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- Popular Product Section End -->
+
+<!-- About Section Start -->
+<div class="overflow-hidden about-sec1" id="about-sec">
+  <div class="shape-mockup moving" data-top="8%" data-right="4%"><img src="{% static 'assets/img/shape/leaf-3.png' %}"
+          alt="shape"></div>
+  <div class="shape-mockup jump d-none d-md-block" data-bottom="4%" data-right="3%"><img
+          src="{% static 'assets/img/shape/leaf-4.png' %}" alt="shape"></div>
+  <div class="container pb-5 mb-4 mb-xl-0 pb-xl-0">
+      <div class="row align-items-center">
+          <div class="col-xl-7 mb-40 mb-xl-0">
+              <div class="img-box6">
+
+                  <div class="img1">
+                      <img src="{% static 'assets/img/normal/logo.jpg'%}" alt="Why">
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-5 text-center text-xl-start">
+              <div class="title-area mb-35">
+                  <span class="sub-title3">About Us</span>
+                  <h2 class="sec-title">{{about.name}}</h2>
+                  <div class="text-ani">
+                      <p class="sec-text">{{about.description}} </p>
+                  </div>
+              </div>
+              <div class="about-feature-wrap">
+                  
+                  
+              </div>
+              <div class="text-ani">
+                  <a href="about.html" class="th-btn style-border">Contact Us</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- About Section End -->
+
+<!-- Sister Section Start -->
+ <br>
+ <div class="space">
+  <div class="container">
+    <div class="title-area text-center">
+
+      <h2 class="sec-title">Sister Concerns </h2>
+    </div>
+    <div class="swiper th-slider" id="brandSlider1"
+      data-slider-options='{"spaceBetween":45,"breakpoints":{"0":{"slidesPerView":2},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"4"},"1300":{"slidesPerView":"5"},"1500":{"slidesPerView":"5"}}}'>
+      <div class="swiper-wrapper">
+        {% for sister in sisters %}
+        <div class="swiper-slide">
+          <div class="brand-box style">
+            <a href=""><img src="{{sister.image.url}}" alt="{{sister.name}}"></a>
+            <br>
+            <span class="sub-title3"> {{sister.name}}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<!-- Sister Section End -->
+
+<!-- CTA Section Start -->
+<section class="overflow-hidden bg-success">
+  <div class="container pb-40 pb-lg-0 ">
+      <div class="row flex-row-reverse align-items-center">
+
+          <div class="col-lg-12 pt-40 pb-40">
+              <div class="text-center text-lg-start">
+                  <h4 class="text-white title-ani2 mb-35">Call to Action</h4>
+                  <div class="row">
+                      <div class="col-md-8">
+                          <h2 class="sec-title title-ani2 h1  mb-30 text-warning">{{info.name}}</h2>
+                      </div>
+
+                      <div class="text-ani col-md-4">
+                          <a href="shop-details.html" class="th-btn style3">Contact Now</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- CTA Section End -->
+<!-- Contact Section Start -->
+
+<div class="bg-white">
+  <div class="shape-mockup jump d-none d-xl-block" data-top="7%" data-right="0"><img
+          src="{% static 'assets/img/bg/slider-1.png' %}" alt="shape" data-speed="1.1"></div>
+  <div class="shape-mockup moving d-none d-xl-block" data-bottom="0" data-right="0"><img
+          src="{% static 'assets/img/shape/leaf-3.png' %}" alt="shape"></div>
+  <div class="container">
+      <div class="row align-items-center">
+          <div class="col-xl-6">
+              <div class="reserve-img1">
+                  <img src="{{about.image.url}}" >
+              </div>
+          </div>
+          <div class="col-xl-6 text-center text-xl-start">
+              <div class="ps-xxl-5 pt-40 pb-40 mb-40 mb-xl-0">
+                  <div class="title-area mb-30">
+                      <span class="sub-title4">Need Medicine?</span>
+                      <h2 class="sec-title">Contact Us Now!</h2>
+                  </div>
+                  <form method="POST" class="reservation-form3">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="th-btn" type="submit">Submit</button>
+                </form>
+                
+                <!-- Display success messages -->
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Contact Section End -->
+
+{% endblock %} 

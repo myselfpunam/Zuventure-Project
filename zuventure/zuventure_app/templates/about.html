@@ -1,0 +1,178 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %} 
+<div class="breadcumb-wrapper " data-bg-src="{% static 'assets/img/bg/background_of_product_details.jpg' %}">
+  <div class="container">
+      <div class="breadcumb-content">
+          <h1 class="breadcumb-title">About Us</h1>
+          <ul class="breadcumb-menu">
+              <li><a href="{% url 'index' %}">Home</a></li>
+              <li>About</li>
+          </ul>
+      </div>
+  </div>
+</div>
+<br>
+<br>
+<!-- About Section Start -->
+<div class="overflow-hidden about-sec1" id="about-sec">
+  <div class="shape-mockup moving" data-top="8%" data-right="4%"><img src="{% static 'assets/img/shape/leaf-3.png' %}"
+          alt="shape"></div>
+  <div class="shape-mockup jump d-none d-md-block" data-bottom="4%" data-right="3%"><img
+          src="{% static 'assets/img/shape/leaf-4.png' %}" alt="shape"></div>
+  <div class="container pb-5 mb-4 mb-xl-0 pb-xl-0">
+      <div class="row align-items-center">
+          <div class="col-xl-7 mb-40 mb-xl-0">
+              <div class="img-box6">
+
+                  <div class="img1">
+                      <img src="{% static 'assets/img/normal/logo.jpg'%}" alt="Why">
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-5 text-center text-xl-start">
+              <div class="title-area mb-35">
+                  <span class="sub-title3">About Us</span>
+                  <h2 class="sec-title">{{about.name}}</h2>
+                  <div class="text-ani">
+                      <p class="sec-text">{{about.description}} </p>
+                  </div>
+              </div>
+              <div class="about-feature-wrap">
+                  
+                  
+              </div>
+              <div class="text-ani">
+                  <a href="about.html" class="th-btn style-border">Contact Us</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- About Section End -->
+
+<!-- Chairman Section Start -->
+{% if chairman.name %}
+<div class="space" id="about-sec">
+                <div class="shape-mockup jump" data-top="10%" data-right="0"><img src="{% static 'assets/img/shape/flower_6.png' %}" alt="shape" data-speed="1.15"></div>
+                
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 mb-40 mb-xl-0">
+                            <div class="img-box8">
+                                <div class="shape1">
+                                    <img class="gspin" src="{% static 'assets/img/shape/flower_8.png' %}" alt="shape">
+                                </div>
+                                <div class="img1">
+                                    <img src="{{chairman.image.url}}" style="height: 600px; width: 450px; border-radius: 10px;" alt="Chairman">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="text-center ps-xxl-5">
+                                <div class="title-area mb-35">
+                                    <span class="sub-title3">About Our Chairman</span>
+                                    <h2 class="sec-title title-ani">{{chairman.name}}</h2>
+                                    <div class="text-start">
+                                        <p>{{chairman.description|safe}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+{% endif %}
+<!-- Chairman Section End -->
+
+<!-- MD Section Start -->
+{% if md.name %}
+<div class="space" id="about-sec">
+  <div class="shape-mockup jump" data-top="10%" data-right="0"></div>
+  
+  <div class="container">
+      <div class="row align-items-center">
+          <div class="col-xl-6">
+              <div class="text-center ps-xxl-5">
+                  <div class="title-area mb-35">
+                      <span class="sub-title3">About Our Managing Director</span>
+                      <h2 class="sec-title title-ani">{{md.name}}</h2>
+                      <div class="text-start">
+                          <p class="sec-text">{{md.description|safe}}</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-6 mb-40 mb-xl-0">
+            <div class="img-box8">
+                <div class="img1">
+                    <img src="{{md.image.url}}" style="height: 600px; width: 450px; border-radius: 10px;" alt="Managing Director">
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+{% endif %}
+<!-- MD Section End -->
+<!-- Team Section Start -->
+{% if team_members %}
+<section class="bg-smoke space">
+  <div class="container z-index-common">
+      <div class="title-area text-center">
+          <span class="sub-title3">Our Expert Team</span>
+          <h2 class="sec-title title-ani">Meet Our Dynamic Team Members</h2>
+      </div>
+      <div class="slider-area">
+          <div class="swiper th-slider has-shadow" id="teamSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'>
+              <div class="swiper-wrapper">
+                  <!-- Single Item -->
+                   {% for member in team_members %}
+                  <div class="swiper-slide">
+                      <div class="th-team team-card">
+                          <div class="box-img">
+                              <img src="{{member.image.url}}" style="height: 300px; width: 300px;" alt="Team">
+                          </div>
+                          <h3 class="box-title">{{member.name}}</h3>
+                          <p class="box-desig">{{member.designation}}</p>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+          <button data-slider-prev="#teamSlider1" class="slider-arrow slider-prev"><span class="icon"></span></button>
+          <button data-slider-next="#teamSlider1" class="slider-arrow slider-next"><span class="icon"></span></button>
+      </div>
+  </div>
+</section>
+{% endif %}
+<!-- Team Section End -->
+<!-- Sister Concerns Section Start -->
+{% if sisters %}
+<div class="space">
+  <div class="container">
+    <div class="title-area text-center">
+
+      <h2 class="sec-title">Sister Concerns </h2>
+    </div>
+    <div class="swiper th-slider" id="brandSlider1"
+      data-slider-options='{"spaceBetween":45,"breakpoints":{"0":{"slidesPerView":2},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"4"},"1300":{"slidesPerView":"5"},"1500":{"slidesPerView":"5"}}}'>
+      <div class="swiper-wrapper">
+        {% for sister in sisters %}
+        <div class="swiper-slide">
+          <div class="brand-box style">
+            <a href=""><img src="{{sister.image.url}}" alt="{{sister.name}}"></a>
+            <br>
+            <span class="sub-title3"> {{sister.name}}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<!-- Sister Concerns Section End -->
+
+{% endblock %} 

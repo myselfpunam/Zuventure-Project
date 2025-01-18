@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+<div class="breadcumb-wrapper " data-bg-src="{% static 'assets/img/bg/background_of_product_details.jpg' %}">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Career</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li>Career</li>
+            </ul>
+        </div>
+    </div>
+  </div>
+<!--Contact One Start -->
+{% if cv_categories %}
+<section class="contact-one">
+    <div class="contact-one__shape-2">
+        <img src="/static/assets/images/shapes/contact-one-shape-2.png" alt="">
+    </div>
+    <div class="contact-one__shape-3">
+        <img src="/static/assets/images/shapes/contact-one-shape-3.png" alt="">
+    </div>
+    <div class="contact-one__shape-4">
+        <img src="/static/assets/images/shapes/contact-one-shape-4.png" alt="">
+    </div>
+    <div class="contact-one__shape-5 float-bob-x">
+        <img src="/static/assets/images/shapes/contact-one-shape-5.png" alt="">
+    </div>
+    <div class="contact-one__shape-6 wow slideInRight" data-wow-delay="100ms" data-wow-duration="2500ms">
+        <img src="/static/assets/images/shapes/contact-one-shape-6.png" alt="" class="float-bob-x">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6">
+                <div class="contact-one__left">
+                    <div class="contact-one__img-box">
+                        <br>
+                        <br>
+                        <div class="contact-one__img">
+                            <img src="{{info.image.url}}" alt="">
+                        </div>
+                        <div class="contact-one__video-link">
+                            <a href="https://www.youtube.com/watch?v=MMyZ9Pu01RI" class="video-popup">
+                                <div class="contact-one__video-icon">
+                                    <span class="fa fa-play"></span>
+                                    <i class="ripple"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="contact-one__shape-1 float-bob-y">
+                            <img src="/static/assets/images/shapes/contact-one-shape-1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6">
+                <div class="contact-one__right">
+                    <div class="contact-one__content">
+                        <p class="contact-one__tagline">Recruitment</p>
+                        <h2 class="contact-one__title">Request for a job</h2>
+                        <form class="contact-one__form" id="contact-form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="contact-one__content-box">
+
+                                <!-- Dropdown for CvCategory -->
+                                <div class="btn-group pb-4">
+                                    <button type="button" class="btn btn-success dropdown-toggle" 
+                                            id="category-button"
+                                            data-bs-toggle="dropdown" 
+                                            aria-expanded="false">
+                                        Select Category
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        {% for category in cv_categories %}
+                                        <li>
+                                            <button class="dropdown-item" 
+                                                    type="button" 
+                                                    onclick="selectCategory('{{ category.id }}', '{{ category.title }}')">
+                                                {{ category.title }}
+                                            </button>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <input type="hidden" id="cv_category" name="cv_category" required>
+                                </div>
+                                
+
+
+                                <!-- Input for Name -->
+                                <div class="contact-one__input-box">
+                                    <input type="text" placeholder="Your Name" name="name" required>
+                                </div>
+                                <br>
+                                <!-- Input for Email -->
+                                <div class="contact-one__input-box">
+                                    <input type="email" placeholder="Email Address" name="email" required>
+                                </div>
+                                <br>
+                                <!-- Input for Phone Number -->
+                                <div class="contact-one__input-box">
+                                    <input type="text" placeholder="Phone Number" name="phone_number" required>
+                                </div>
+                                <br>
+                                <!-- File upload for Photo -->
+                                <div class="contact-one__input-box">
+                                    <label class="custom-file-upload">
+                                        <input type="file" name="photo" accept="image/*" required>
+                                        <i class="fa fa-upload"></i> Choose Passport Photo
+                                    </label>
+                                </div>
+                                <br>
+                                <!-- File upload for CV -->
+                                <div class="contact-one__input-box">
+                                    <label class="custom-file-upload">
+                                        <input type="file" name="cv" accept=".pdf" required>
+                                        <i class="fa fa-file"></i> Choose Your CV
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div class="contact-one__progress"></div>
+                            <br>
+                            <div class="contact-one__content-bottom">
+                                <button type="submit" class="thm-btn contact-one__btn btn-styled">Submit</button>
+
+                            </div>
+
+                            <div class="contact-one__content-bottom-text-box" id="success-message"
+                                style="display:none;"></div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<br>
+<div class="container">
+    <div class="title-area text-center">
+        <span class="sub-title3">NO JOB</span>
+        <h2 class="sec-title">Currently, we do not have any job openings. We appreciate your interest and thank you for visiting our website. Please check back later for future opportunities.</h2>
+    </div>
+</div>
+{% endif %}
+<!--Contact One End -->
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+
+            if (!form.checkValidity()) {
+                alert('Please fill out all required fields.');
+                return;
+            }
+
+
+            const formData = new FormData(form);
+
+
+            document.querySelector('.contact-one__progress').style.display = 'block';
+
+
+            fetch("{% url 'drop_cv' %}", {  // Replace with the actual URL to handle the form
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name="csrfmiddlewaretoken"]').value
+                }
+            })
+                .then(response => response.json()) // Assuming the server responds with JSON
+                .then(data => {
+                    // Hide the progress
+                    document.querySelector('.contact-one__progress').style.display = 'none';
+
+                    if (data.success) {
+                        // Show success message
+                        const successMessage = document.getElementById('success-message');
+                        successMessage.style.display = 'block';
+                        successMessage.textContent = 'Your CV has been successfully submitted!';
+
+                        // Reset form
+                        form.reset();
+                    } else {
+                        // Handle errors or failure
+                        alert('There was an error submitting your Category. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    // Hide the progress and show error message
+                    document.querySelector('.contact-one__progress').style.display = 'none';
+                    alert('There was an error submitting your Category. Please try again.');
+                });
+        });
+    });
+
+</script>
+
+
+<script>
+
+    function selectCategory(categoryId, categoryTitle) {
+        // Set the value of the hidden input field
+        document.getElementById('cv_category').value = categoryId;
+
+        // Update the button text to show the selected category's title
+        document.getElementById('category-button').textContent = categoryTitle;
+    }
+
+
+</script>
+
+
+
+
+
+
+{% endblock %}

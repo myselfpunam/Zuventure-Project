@@ -1,0 +1,39 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %} 
+<!-- Popular Product Section Start -->
+<section class="space" id="shop-sec">
+  <div class="shape-mockup spin d-none d-lg-block" data-top="8%" data-left="3%">
+    <img class="gspin" src="{% static 'assets/img/shape/flower_9.png' %}" alt="shape">
+  </div>
+  <div class="shape-mockup jump-reverse" data-bottom="8%" data-right="0">
+    <img src="{% static 'assets/img/shape/flower_6.png' %}" alt="shape" data-speed="1.2">
+  </div>
+  <div class="container text-center">
+    <div class="title-area text-center">
+      <h2 class="sec-title">Our Products</h2>
+    </div>
+
+
+    <!-- Products Section -->
+    <div class="row gy-40 filter-active">
+      {% for product in filtered_products %}
+      <div class="col-xl-3 col-lg-4 col-sm-6 filter-item ">
+        <div class="th-product product-grid">
+          <div class="product-img transparent-img">
+            <a href="{% url 'get_products' category_name=product.product_of.name id=product.id %}"><img src="{{ product.image.url }}" alt="Product Image"></a>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">
+              <a href="{% url 'get_products' category_name=product.product_of.name id=product.id %}">{{ product.name }}</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- Popular Product Section End -->
+{% endblock %} 
